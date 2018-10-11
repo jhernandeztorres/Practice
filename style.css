@@ -1,0 +1,228 @@
+/*Navbar*/
+.navbar-inverse {
+    background-color: #595959;
+    width: 100%;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-nav {
+    display: block;
+}
+
+
+/* Transformation Boxes*/
+@import "compass/css3";
+
+body {
+    background: #dcdcdc;
+}
+
+
+#showcase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 100px;
+    width: 1000px;
+    height: 700px;
+}
+
+section {
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    height: 100%;
+    background-size: cover;
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        @include transition(all .5s);
+    }
+}
+
+$img-01: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?dpr=1&auto=format&fit=crop&w=1080&h=721&q=80&cs=tinysrgb&crop=&bg=";
+$img-02: "https://images.unsplash.com/photo-1472437774355-71ab6752b434?dpr=1&auto=format&fit=crop&w=1080&h=810&q=80&cs=tinysrgb&crop=&bg=";
+$img-03: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?dpr=1&auto=format&fit=crop&w=1080&h=717&q=80&cs=tinysrgb&crop=&bg=";
+$img-04: "https://images.unsplash.com/19/desktop.JPG?dpr=1&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=&bg=";
+
+$sections: (1: ((23% 18%, 95% 13%, 100% 91%, 55% 87%),
+(95% 10%, 100% 80%, 62% 77%, 45% 12%),
+(100% 67%, 48% 63%, 28% 9%, 95% 3%),
+(78% 72%, 58% 34%, 95% 27%, 100% 73%)),
+2: ((0% 7%, 100% 9%, 95% 93%, 5% 95%),
+(100% 3%, 95% 95%, 5% 90%, 0% 5%),
+(95% 83%, 5% 78%, 0% 6%, 100% 11%),
+(5% 79%, 0% 21%, 100% 16%, 95% 83%)),
+3: ((5% 11%, 100% 14%, 95% 88%, 0% 91%),
+(100% 14%, 95% 84%, 0% 91%, 5% 7%),
+(95% 79%, 0% 86%, 5% 7%, 100% 3%),
+(0% 85%, 5% 14%, 100% 3%, 95% 95%)),
+4: ((5% 18%, 89% 21%, 62% 73%, 0% 83%),
+(57% 31%, 45% 67%, 0% 77%, 5% 18%),
+(45% 57%, 0% 67%, 5% 8%, 72% 12%),
+(0% 77%, 5% 18%, 47% 21%, 32% 67%)));
+
+@each $section,
+$key in $sections {
+    $bg: -33.33333 + $section*33.33333;
+    $clip-01: nth($key, 1);
+    $clip-02: nth($key, 2);
+    $clip-03: nth($key, 3);
+    $clip-04: nth($key, 4);
+
+    section:nth-child(#{$section}) {
+        @include animation(section-#{$section} 8s both infinite);
+    }
+
+    @include keyframes(section-#{$section}) {
+
+        0%,
+        20%,
+        100% {
+            background: url($img-01) #{$bg}#{'%'} 0%;
+            -webkit-clip-path: polygon($clip-01);
+        }
+
+        25%,
+        45% {
+            background: url($img-02) #{$bg}#{'%'} 0%;
+            -webkit-clip-path: polygon($clip-02);
+        }
+
+        50%,
+        70% {
+            background: url($img-03) #{$bg}#{'%'} 0%;
+            -webkit-clip-path: polygon($clip-03);
+        }
+
+        75%,
+        95% {
+            background: url($img-04) #{$bg}#{'%'} 0%;
+            -webkit-clip-path: polygon($clip-04);
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    #showcase {
+        position: absolute;
+        top: -115px;
+        left: -200px;
+        margin: 0;
+        @include scale(.65);
+    }
+}
+
+hr.line {
+    border-top: 1px solid #8c8b8b;
+    text-align: center;
+}
+
+hr.line:after {
+    content: '§';
+    display: inline-block;
+    position: relative;
+    top: -14px;
+    padding: 0 10px;
+    background: #f0f0f0;
+    color: #8c8b8b;
+    font-size: 18px;
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+
+#content {
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+#placeholder img {
+    width: 30%;
+    float: left;
+    margin: 1.66%;
+    padding-bottom: 40px;
+}
+
+/*Footer*/
+.footer-icons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #595959;
+    text-align: center;
+    position: fixed;
+    padding-bottom: 0;
+    width: 100%;
+}
+
+.social-icons {
+    color: #fff;
+}
+
+ul.social-icons {
+    margin-top: 2px;
+}
+
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+    height: 100px;
+}
+
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.fa-github-square {
+    padding: 10px 12px;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.fa-github-square:hover {
+    background-color: black;
+}
+
+.fa-twitter-square {
+    padding: 10px 12px;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.fa-twitter-square:hover {
+    background-color: #00aced;
+}
+
+.fa-linkedin-square {
+    padding: 10px 12px;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.fa-linkedin-square:hover {
+    background-color: blue;
+}
